@@ -37,7 +37,7 @@ const btnReturn = document.getElementById('return')
 const btnBuy = document.querySelectorAll('.btn-buy')
 
 // Sounds
-const shot = new Audio('./assets/shot.wav')
+const shot = new Audio('assets/shot.wav')
 
 // Create a card to character
 function makeCharCard(charName) {
@@ -46,7 +46,7 @@ function makeCharCard(charName) {
   
   const img = document.createElement('img')
   img.alt = mapNames[charName]
-  img.src = `./assets/${charName}.png`
+  img.src = `assets/${charName}.png`
   
   const btnBet = document.createElement('button')
   btnBet.className = 'btn-bet'
