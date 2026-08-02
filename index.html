@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <link rel="stylesheet" href="./style/style.css">
+  <title>Bet Dead Redemption</title>
+</head>
+<body>
+  <div class="game">
+    <div class="menu">
+      <h1>BET DEAD REDEMPTION</h1>
+      
+      <div class="btn-box">
+        <button id="start">Começar</button>
+      </div>
+    </div>
+    
+    <div class="display-box">
+      <h3 class="display">Money: 100 | Round: 1</h3>
+      <h3 class="display">Tax Rate: 150</h3>
+    </div>
+    
+    <div class="cards-box"></div>
+    
+    <div class="fight-stage escondido"></div>
+    
+    <div class="shop escondido">
+      <div class="shop-header">
+        <h2>LOJA DO SALOON</h2>
+        <p class="shop-subtitle">Gaste suas honras ou prepare suas fichas para a próxima rodada</p>
+      </div>
+
+      <div class="shop-items-container">
+        <div class="shop-item">
+          <div class="shop-item-info">
+            <h3>Óleo de Cobra Extra</h3>
+            <p>O jogador não irá perder nos primeiros 5 rounds</p>
+          </div>
+          <div class="shop-item-action">
+            <span class="price">$ 2</span>
+            <button class="btn-buy" data-id="1">Comprar</button>
+          </div>
+        </div>
+        
+        <div class="shop-item">
+          <div class="shop-item-info">
+            <h3>Acordo de cavalheiros</h3>
+            <p>Reduz o aumento da taxa</p>
+          </div>
+          <div class="shop-item-action">
+            <span class="price">$ 2.5</span>
+            <button class="btn-buy" data-id="2">Comprar</button>
+          </div>
+        </div>
+        
+        <div class="shop-item">
+          <div class="shop-item-info">
+            <h3>Fundo de emergência</h3>
+            <p>Se o dinheiro chegar à zero, ganha algum dinheiro extra</p>
+          </div>
+          <div class="shop-item-action">
+            <span class="price">$ 5</span>
+            <button class="btn-buy" data-id="3">Comprar</button>
+          </div>
+        </div>
+        
+        <div class="shop-item">
+          <div class="shop-item-info">
+            <h3>Salário</h3>
+            <p>Ganha 50$ a cada 10 rounds</p>
+          </div>
+          <div class="shop-item-action">
+            <span class="price">$ 3</span>
+            <button class="btn-buy" data-id="4">Comprar</button>
+          </div>
+        </div>
+        
+        <div class="shop-item">
+          <div class="shop-item-info">
+            <h3>Mais dinheiro, menos risco</h3>
+            <p>Aumenta o ganho por apostas, mas não a perda de dinheiro</p>
+          </div>
+          <div class="shop-item-action">
+            <span class="price">$ 10</span>
+            <button class="btn-buy" data-id="5">Comprar</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="shop-footer">
+        <button id="return">Voltar ao menu</button>
+      </div>
+    </div>
+    
+    <div class="death escondido">
+      <h2>YOU ARE DEAD</h2>
+      <p>Os agiotas te pegaram, você não tinha dinheiro suficiente</p>
+      
+      <button id="restart">Recomeçar</button>
+      <button id="shop">Shop</button>
+    </div>
+    
+    <div class="flash"></div>
+  </div>
+
+  
+  <script src="./src/main.js" type="module"></script>
+</body>
+</html>

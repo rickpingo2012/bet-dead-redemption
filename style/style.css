@@ -1,0 +1,560 @@
+@import url('https://fonts.googleapis.com/css2?family=Rye&family=Impact&display=swap');
+/* ---- Basic configs ---- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: #0c0a09;
+  font-family: 'Arial', sans-serif;
+  height: 100%;
+}
+
+/* ---- Set the game and the menu ---- */
+.game {
+  background-image: url('../assets/desert.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  
+  height: 100vh;
+  width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  padding: 40px 20px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  text-align: center;
+  width: 100%;
+}
+
+/* Class to set all to invisible */
+.escondido {
+  display: none !important;
+}
+
+/* ---- Set the menu ---- */
+h1 {
+  font-family: 'Rye', serif;
+  font-family: 'Impact', sans-serif; 
+  font-size: 2.8rem;
+  letter-spacing: 3px;
+  line-height: 1.1;
+  
+  background: linear-gradient(to bottom, #ffe082, #b58110);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.9));
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.btn-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ----Set the button---- */
+#start {
+  background: linear-gradient(135deg, #2b1810, #1a0f0a);
+  color: #e5c158;
+  
+  border: 2px solid #a16207;
+  border-radius: 4px;
+  
+  padding: 14px 40px;
+  font-size: 22px;
+  font-family: 'Impact', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
+  transition: all 0.2s ease-in-out;
+}
+
+#start:active {
+  transform: scale(0.95);
+  background: #1a0f0a;
+  border-color: #e5c158;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* ---- Set the display ---- */
+.display-box {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.display {
+  color: #ffe082;
+  font-family: 'Impact', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* ---- Set the other divs ---- */
+.fight-stage {
+  display: flex;
+  justify-content: space-around; 
+  align-items: flex-end;         
+  flex-grow: 1;                  
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;              
+  overflow: hidden;              
+}
+
+.shop {
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.character-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+  height: 70vh;
+  justify-content: flex-end;
+}
+
+.character-card img {
+  height: 50vh !important;
+  max-width: 100% !important;     
+  width: auto;                   
+  object-fit: contain;
+  filter: drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.6));
+}
+
+.character-card:last-child img {
+  transform: scaleX(-1);
+}
+
+.btn-bet {
+  margin-top: 15px;
+  background: linear-gradient(135deg, #851c1c, #4a1010);
+  color: #ffe082;
+  border: 1px solid #a16207;
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-family: 'Impact', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  transition: all 0.1s ease;
+  width: 100%;
+  max-width: 180px;
+  text-align: center;
+}
+
+.btn-bet:active {
+  transform: scale(0.95);
+  background: #330b0b;
+}
+
+.flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.05s ease-out; 
+}
+
+.flash.ativo {
+  opacity: 1;
+}
+
+.cards-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-grow: 1;
+  width: 100%;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ---- Style of cards ----*/
+.upgrade-card {
+  background: linear-gradient(145deg, #1f1610, #0f0b07);
+  border: 3px double #b58110;
+  border-radius: 8px;
+  color: #f5e6c8;
+  width: 28%;
+  height: 50vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(181, 129, 16, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  gap: 15px;
+}
+
+.upgrade-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  border-color: #ffe082;
+  box-shadow: 0 15px 30px rgba(181, 129, 16, 0.4), inset 0 0 20px rgba(255, 224, 130, 0.3);
+}
+
+.upgrade-card:active {
+  transform: translateY(-2px) scale(0.98);
+}
+
+.upgrade-card h3 {
+  font-family: 'Rye', serif;
+  font-size: 1.2rem;
+  color: #ffe082;
+  text-shadow: 1px 1px 2px #000;
+  line-height: 1.2;
+  border-bottom: 1px solid #a16207;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.upgrade-card p {
+  font-family: 'Arial', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #dfcfb7;
+  margin-top: 15px;
+  flex-grow: 1;
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+  .cards-box {
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
+  }
+
+  .upgrade-card {
+    width: 90%;
+    height: auto;
+    min-height: 120px;
+    padding: 15px;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .upgrade-card h3 {
+    width: 40%;
+    border-bottom: none;
+    border-right: 1px solid #a16207;
+    padding-bottom: 0;
+    padding-right: 10px;
+    margin-bottom: 0;
+  }
+
+  .upgrade-card p {
+    width: 60%;
+    margin-top: 0;
+    padding-left: 15px;
+    text-align: left;
+  }
+}
+
+/* ---- Game Over Style ---- */
+.death {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  text-align: center;
+  width: 100%;
+  padding: 20px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.death h2 {
+  font-family: 'Impact', sans-serif;
+  font-size: 4rem;
+  letter-spacing: 4px;
+  
+  background: linear-gradient(to bottom, #ff4d4d, #7a0000);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  filter: drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.9));
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.death p {
+  font-family: 'Rye', serif;
+  font-size: 1.2rem;
+  color: #dfcfb7;
+  max-width: 500px;
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  line-height: 1.5;
+}
+
+.death button {
+  display: inline-block;
+  margin: 10px;
+  min-width: 160px;
+  
+  background: linear-gradient(135deg, #2b1810, #1a0f0a);
+  color: #e5c158;
+  border: 2px solid #a16207;
+  border-radius: 4px;
+  padding: 12px 30px;
+  font-size: 18px;
+  font-family: 'Impact', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
+  transition: all 0.2s ease-in-out;
+}
+
+#restart {
+  border-color: #ffe082;
+  box-shadow: 0 6px 15px rgba(255, 224, 130, 0.15), 0 6px 15px rgba(0, 0, 0, 0.7);
+}
+
+.death button:hover {
+  transform: translateY(-2px);
+  border-color: #ffe082;
+  box-shadow: 0 8px 20px rgba(181, 129, 16, 0.3);
+}
+
+.death button:active {
+  transform: scale(0.95);
+  background: #1a0f0a;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+  .death h2 {
+    font-size: 2.8rem;
+  }
+  .death p {
+    font-size: 1rem;
+  }
+  .death button {
+    width: 80%;
+    margin: 8px auto;
+  }
+}
+
+/* ---- Shop Style ---- */
+.shop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  min-height: 80vh;
+  margin: 0 auto;
+  padding: 30px 20px;
+  
+  background: linear-gradient(145deg, #1f1610, #0f0b07);
+  border: 3px double #b58110;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(181, 129, 16, 0.15);
+  animation: fadeIn 0.4s ease-out;
+}
+
+.shop-header {
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%;
+  border-bottom: 2px solid #a16207;
+  padding-bottom: 15px;
+}
+
+.shop-header h2 {
+  font-family: 'Impact', sans-serif;
+  font-size: 3rem;
+  letter-spacing: 3px;
+  background: linear-gradient(to bottom, #ffe082, #b58110);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.9));
+  text-transform: uppercase;
+}
+
+.shop-subtitle {
+  font-family: 'Rye', serif;
+  font-size: 0.95rem;
+  color: #dfcfb7;
+  margin-top: 5px;
+}
+
+.shop-items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 5px;
+  margin-bottom: 20px;
+}
+
+.shop-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(26, 15, 10, 0.8);
+  border: 1px solid #a16207;
+  border-radius: 6px;
+  padding: 15px 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+.shop-item:hover {
+  border-color: #ffe082;
+  background: rgba(43, 24, 16, 0.9);
+  box-shadow: 0 4px 12px rgba(181, 129, 16, 0.25);
+}
+
+.shop-item-info h3 {
+  font-family: 'Rye', serif;
+  font-size: 1.1rem;
+  color: #ffe082;
+  margin-bottom: 4px;
+}
+
+.shop-item-info p {
+  font-size: 0.85rem;
+  color: #dfcfb7;
+  max-width: 450px;
+}
+
+.shop-item-action {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.shop-item-action .price {
+  font-family: 'Impact', sans-serif;
+  font-size: 1.3rem;
+  color: #22c55e;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.btn-buy {
+  background: linear-gradient(135deg, #851c1c, #4a1010);
+  color: #ffe082;
+  border: 1px solid #a16207;
+  border-radius: 4px;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-family: 'Impact', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  transition: all 0.1s ease;
+}
+
+.btn-buy:hover {
+  border-color: #ffe082;
+  box-shadow: 0 4px 12px rgba(255, 224, 130, 0.3);
+}
+
+.btn-buy:active {
+  transform: scale(0.95);
+  background: #330b0b;
+}
+
+.shop-footer {
+  width: 100%;
+  text-align: center;
+  border-top: 1px solid #a16207;
+  padding-top: 15px;
+}
+
+#return {
+  background: linear-gradient(135deg, #2b1810, #1a0f0a);
+  color: #e5c158;
+  border: 2px solid #a16207;
+  border-radius: 4px;
+  padding: 10px 30px;
+  font-size: 18px;
+  font-family: 'Impact', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
+  transition: all 0.2s ease-in-out;
+}
+
+#return:hover {
+  transform: translateY(-2px);
+  border-color: #ffe082;
+}
+
+#return:active {
+  transform: scale(0.95);
+  background: #1a0f0a;
+}
+
+@media (max-width: 768px) {
+  .shop {
+    width: 95%;
+    padding: 20px 15px;
+  }
+
+  .shop-header h2 {
+    font-size: 2.2rem;
+  }
+
+  .shop-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .shop-item-action {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
